@@ -1,0 +1,44 @@
+<html>
+    <p>
+    <?php
+    // Print out the position of a letter that is in
+    // your own name
+    $start = 'kayak';
+    echo strpos($start,'y');
+    echo "<b>Picking a random letter from a word</b>"."<br/>\n";
+    echo "<ul>Way 1: ".$start."<br/>\n";
+    $shuffled = str_shuffle($start);
+    print "shuffled: ".$shuffled . "<br/>\n";
+    $letter = $shuffled[2];
+    $sameletter = substr($shuffled, -3,1); //denotes start at the letter three from the right with the far right = -1 and display 1 character inclusive from that point ALWAYS left to right or (2,1) denotes start at 2 and only display 1 character inclusive from that point or (2,-2) denotes start at middle character and display until second from right is reached in other words ignore everything from -2 on
+    print "Middle letter of scrambled string: ".$letter." or ".$sameletter."<br/><br/>\n";
+    echo "Way 2: ".$start."<br/>\n";
+    $randLetter = substr($start,rand(0,4),1);
+    echo "substr() used with rand(): ".$randLetter."<br/><br/>\n</ul>";
+    echo "<b>Replacing that random character in the original word</b>"."<br/>\n";
+    preg_match_all("/".$randLetter."/", $start, $results, PREG_OFFSET_CAPTURE);
+    //The above function searches a string for any matches and stores the results in an array. There are three CAPS parameters/options possible at the end, the current one creates one 3 dimentional array, with each match, and finally the letter matched and its location from the start of the searched string
+    print_r ($results[0]);
+    echo "<br/>\n";
+    echo "Position of rand() chosen #'s: ";
+    foreach($results as $dig_1)
+    {
+        foreach($dig_1 as $dig_2)
+        {
+            echo $dig_2[1];
+            //It took me a while to debug, but if you "foreach" on the lowest array in your multi-dimentional array, your new output vale/dig becomes a string and you cannot easily parse the core bits of information out.
+        }
+    }
+    $end = str_replace($randLetter , "r" , $start);
+    $end = strtoupper($end);
+    echo ("<br/>".$end."<br/>");
+    ?>
+    </p>
+    <p>
+    <?php
+if (strpos("david","h") === false) {
+print "Sorry, no 'h' in 'david'";
+}
+    ?>
+    </p>
+</html>
