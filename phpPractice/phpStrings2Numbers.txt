@@ -1,0 +1,27 @@
+<html>
+    <p>
+    <?php
+    // Try rounding a floating point number to 3 decimal places
+    // and print it to the screen
+    $strInput = "alec";
+    //I want to make a random seed using the text in my name.
+    //Type castings is automatic and not easily forced.
+    //Also intval() makes my name is 0 or 1 in both case,
+    //regardless of the number of characters.
+    $longInput = "";
+    for ($a=0;$a < strlen($strInput);$a++)
+    {
+        $longInput .= ord($strInput[$a]);//ord()gives int of ascii
+        // .= is similar to += but, "2"."5" will make "25" where as "2"+"5" will make "7". I used .= so I could concatenate the text in my name to make a larger seed number. $longInput was set to an empty string. When I concatenate integer values to it, the first integer value I add appears on the far left. If it were initialized as"0" then the first number in my concatenated $longInput would always be 0.
+        //bin2hex() might also suffice for ord and the opposite of the ord() is chr() wich makes strings from numbers.
+    }
+    echo "<br/>".$longInput."<br/>";
+    srand($longInput);
+    $randInput = rand();
+    //A seed is the starting value used in a psudeorandom number generator, for every identical seed, the *random* number sequence is identical
+    echo $randInput."<br/>";
+    $roundInput = round($randInput,-5);
+    echo $roundInput;
+    ?>
+    </p>
+</html>
