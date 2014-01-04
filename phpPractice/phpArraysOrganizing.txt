@@ -1,0 +1,47 @@
+<html>
+    <p>
+	<?php
+	// Create an array with several elements in it,
+	// then sort it and print the joined elements to the screen
+	/*
+	$aryNames = "Alec"."Ian"."Doug"."Kathleen";
+	echo $aryNames;
+	the above will echo: "AlecIanDougKathleen" as one array element
+	
+	$aryNames = "Alec"+"Ian"+"Doug"+"Kathleen";
+	echo $aryNames;
+	the above will echo: "0" as one array element
+	*/
+	$aryNames = array("Alec","Brodie","Doug","Ian","Kathleen");
+	print_r($aryNames);
+	echo "<br/>";
+	$lmntRandom = rand(0,count($aryNames)-1);
+	//choosing a random element from the array. Remember count() is to an array as strlen() is to a string. Also we have to subtract 1 from count because count is not zero-indexed
+	$lmntAry = array($aryNames[$lmntRandom]);
+	//Making an array out of the randomly chosen element
+	echo "<br/>".$lmntRandom.$lmntAry[0];
+	$lmntRandom2 = rand(0,count($aryNames)-1);
+	//choose second random element
+	$lmntAry2 = array($aryNames[$lmntRandom2]);//or$lmntAry2=(array)$aryNames[$lmntRandom2];
+	echo "<br/>".$lmntRandom2.$lmntAry2[0];
+	array_splice($aryNames,$lmntRandom2,1,$lmntAry);
+	//array_splice is to an array as str_replace is to a string THE REPLACEMENT MUST BE AN ARRAY
+	echo "<br/>";
+	array_splice($aryNames,$lmntRandom,1,$lmntAry2);
+	//notice using other location as the location for replacement
+	/*array_splice($aryNames,3,1,array("cat"));
+	replace kathleen with cat. DO NOT RE-ASSIGN THIS FUNCTION TO A VARIABLE IT WILL MAKE THE RESULTING ARRAY HAVE ONLY 1 ELEMENT!*/
+	print_r($aryNames);
+	echo "<br/><br/>";
+	sort($aryNames);
+	echo join(",",$aryNames);
+	?>
+	</p>
+	<p>
+	<?php
+	// Reverse sort your array and print the joined elements to the screen
+	rsort($aryNames);
+	echo join(",",$aryNames);
+	?>
+	</p>
+</html>

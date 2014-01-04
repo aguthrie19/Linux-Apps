@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+      <p>
+        <?php
+        //take input, and add it to an existing string
+        function aboutMe($name,$age)
+        {
+            $stMaster = "Hello! My name is x, and I am z years old.";
+            //create a master string to edit
+            $stOutput = str_replace("x",$name,$stMaster);
+            //replace the "x" with $name in the $stMaster string
+            $stOutputFin = str_replace("z",$age,$stOutput);
+            //replace the z with $age
+            echo $stOutputFin."<br/>";
+            //Or we can use strpos() and substr_replace()
+            $xLoc = strpos($stMaster,"x");//haystack,needle
+            echo substr_replace($stMaster,$name,$xLoc,1)."<br/>";
+            //haystack,replacement,startlocation,lenght
+            //Or we can str_replace
+            echo str_replace("x",$name,$stMaster);
+            //searchterm,replace,haystack
+            
+            //OR explode it, slpice it, and put it back together
+            $stExplode = explode (" ", $stMaster);
+            //exploding turns a string into a single dimentional array. Element values contain the original string separated by the delimiter (in this case a space)
+            array_splice ($stExplode,4,1,(array)$name);
+            //array_splice replaces one part of the array with another array, it is indexed by the key
+            //array,start,length,replacement MUST BE ARRAY
+            //var_dump($stExplode);
+            $stImplode = implode(" ",$stExplode);
+            //Imploding joins all strings in an array together using a specified separator string
+            //implode(separator/glue,array)
+            echo "<br/>".$stImplode;
+        }
+        aboutMe("Alec",17);
+        ?>
+      </p>
+    </body>
+</html>
